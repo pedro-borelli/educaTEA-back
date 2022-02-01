@@ -76,11 +76,9 @@ public class UsuarioControllerTest {
 		HttpEntity<Usuario> requisicao = new HttpEntity<Usuario>(
 				new Usuario(response.get().getId(),
 				"Juliana Andrews Ramos","link da foto","tipo","juliana_ramos@email.com.br","juliana123"));
-		
 		ResponseEntity<Usuario> resposta = testRestTemplate
 			.withBasicAuth("juliana_andrews@email.com.br","juliana123")
 			.exchange("/usuarios/atualizar",HttpMethod.PUT, requisicao, Usuario.class);
-		
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 		assertEquals("Juliana Andrews Ramos", resposta.getBody().getNome());
 		assertEquals("juliana_ramos@email.com.br", resposta.getBody().getUsuario());
@@ -90,17 +88,13 @@ public class UsuarioControllerTest {
 	@Order(4)
 	@DisplayName("Listar todos os Usuários")
 	public void deveMostrarTodosUsuarios() {
-		
 		usuarioService.cadastrarUsuario(new Usuario (0L,
 			"Sabrina Sanches","link da foto","tipo","sabrina_sanches@email.com.br","sabrina123"));
-	
 		usuarioService.cadastrarUsuario(new Usuario (0L,
 			"Ricardo Marques","link da foto","tipo","ricardo_marques@email.com.br","ricardo123"));
-		
 		ResponseEntity<String> resposta = testRestTemplate
 			.withBasicAuth("tonello", "tonello")
 			.exchange("/usuarios/all", HttpMethod.GET, null, String.class);
-		
 		assertEquals(HttpStatus.OK, resposta.getStatusCode());
 	}
 }
