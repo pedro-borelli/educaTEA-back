@@ -29,6 +29,7 @@ import org.springframework.web.server.ResponseStatusException;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class UsuarioController {
 
+	
 	@Autowired
 	private UsuarioService usuarioService;
 
