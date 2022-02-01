@@ -6,6 +6,7 @@ public class UserLogin {
 
 	private String nome;
 
+	
 	private String usuario;
 	
 	private String foto;
