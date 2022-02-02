@@ -19,6 +19,7 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
+	
 
 	public Optional<Usuario> cadastrarUsuario(Usuario usuario) {
 		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
@@ -38,6 +39,7 @@ public class UsuarioService {
 			return ResponseEntity.status(200).body(usuarioRepository.save(usuario));
 		}
 		throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário não encontrado!", null);
+		
 	}
 
 	public Optional<UserLogin> logarUsuario(Optional<UserLogin> usuarioLogin) {
@@ -48,8 +50,8 @@ public class UsuarioService {
 				usuarioLogin.get().setNome(usuario.get().getNome());
 				usuarioLogin.get().setFoto(usuario.get().getFoto());
 				usuarioLogin.get().setTipo(usuario.get().getTipo());
-				usuarioLogin.get().setSenha(usuario.get().getSenha());
 				usuarioLogin.get().setToken(generatorBasicToken(usuarioLogin.get().getUsuario(), usuarioLogin.get().getSenha()));
+				usuarioLogin.get().setSenha(usuario.get().getSenha());
 				return usuarioLogin;
 			}
 		}
